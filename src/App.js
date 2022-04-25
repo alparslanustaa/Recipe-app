@@ -5,14 +5,20 @@ const App = () => {
   //API STUFF
   const APP_ID = "66f8e97a";
   const APP_KEY = "a8747c363b12db76e9acd2207edc4ce6";
-  const exampleRequest =
-    `https://api.edamam.com/search?q=chicken&app_id=${APP_ID}&app_key=${APP_KEY}`;
-  //state stuff
-  const [counter, setCounter] = useState(0);
 
+  const [recipes, setRecepies] = useState ([]);
+
+  //use effect to run only one time
   useEffect(() => {
-    console.log('Effect test run');
-  })
+    getRecipes();
+  }, []);
+
+  //Recipes api function using await
+  const getRecipes = async () => {
+    const response = await fetch(`https://api.edamam.com/search?q=chicken&app_id=${APP_ID}&app_key=${APP_KEY}`)
+    const data = await response.json();
+    setRecepies(data.hits);
+  }
 
   return (
     <div className="App">
@@ -21,11 +27,9 @@ const App = () => {
         <button
           className="search-button"
           type="submit">
-          {counter}
+          Search
         </button>
       </form>
-      <h1 onClick={() => setCounter(counter + 1)}>{counter}</h1> 
-
     </div>
   )
 }
