@@ -2,7 +2,7 @@ import React from "react"
 import './App.css';
 
 const App = () => {
-
+//API STUFF
   const APP_ID = "66f8e97a";
   const APP_KEY = "a8747c363b12db76e9acd2207edc4ce6";
   const exampleRequest = 
